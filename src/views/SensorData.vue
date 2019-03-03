@@ -43,7 +43,7 @@ export default class SensorData extends Vue {
     return {
       'Acceleration': this.$store.state.sensors.hasAccel,
       'Acceleration with Gravity': this.$store.state.sensors.hasAccelWithGravity,
-      'Rotation rate': this.$store.state.sensors.hasAccelWithGravity,
+      'Rotation rate': this.$store.state.sensors.hasRotationRate,
       'Orientation': this.$store.state.sensors.hasOrientation,
     }
   }
