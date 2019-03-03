@@ -1,7 +1,5 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <h1>HOME Screen</h1>
+  <div class="demo">
   </div>
 </template>
 
@@ -14,5 +12,5 @@ import { Component, Inject, Vue } from 'vue-property-decorator';
 //    HelloWorld,
   },
 })
-export default class Home extends Vue {}
+export default class Demo extends Vue {}
 </script>
