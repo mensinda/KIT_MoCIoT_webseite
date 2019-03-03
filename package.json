@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "gh-pages": "vue-cli-service gh-pages"
   },
   "dependencies": {
     "gyronorm": "https://github.com/dorukeker/gyronorm.js.git",
@@ -24,6 +25,7 @@
     "sass": "^1.16.0",
     "sass-loader": "^7.1.0",
     "typescript": "^3.0.0",
+    "vue-cli-plugin-gh-pages": "^0.4.0",
     "vue-template-compiler": "^2.6.8"
   },
   "postcss": {
