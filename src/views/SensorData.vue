@@ -1,5 +1,6 @@
 <template>
   <div id='sensor'>
+    <h3>Device capabilities</h3>
     <div class='block'>
       <div class='gridBlock' v-for='(value, key) in capabilities' :key='key'>
         <span>{{key}}</span>
@@ -8,6 +9,7 @@
       </div>
     </div>
 
+    <h3>Acceleration</h3>
     <div class='block'>
       <div class='gridBlock' v-for='(value, key) in accel' :key='key'>
         <span>{{key}}</span>
@@ -15,6 +17,7 @@
       </div>
     </div>
 
+    <h3>Acceleration with Gravity</h3>
     <div class='block'>
       <div class='gridBlock' v-for='(value, key) in accelGrav' :key='key'>
         <span>{{key}}</span>
@@ -22,6 +25,15 @@
       </div>
     </div>
 
+    <h3>Rotation rate</h3>
+    <div class='block'>
+      <div class='gridBlock' v-for='(value, key) in accelAngle' :key='key'>
+        <span>{{key}}</span>
+        <span>{{value}}</span>
+      </div>
+    </div>
+
+    <h3>Orientation</h3>
     <div class='block'>
       <div class='gridBlock' v-for='(value, key) in orientation' :key='key'>
         <span>{{key}}</span>
@@ -45,7 +57,7 @@ export default class SensorData extends Vue {
       'Acceleration with Gravity': this.$store.state.sensors.hasAccelWithGravity,
       'Rotation rate': this.$store.state.sensors.hasRotationRate,
       'Orientation': this.$store.state.sensors.hasOrientation,
-    }
+    };
   }
 
   get accel(): object {
@@ -53,7 +65,7 @@ export default class SensorData extends Vue {
       x: this.$store.state.motion.x,
       y: this.$store.state.motion.y,
       z: this.$store.state.motion.z,
-    }
+    };
   }
 
   get accelGrav(): object {
@@ -61,16 +73,24 @@ export default class SensorData extends Vue {
       gx: this.$store.state.motion.gx,
       gy: this.$store.state.motion.gy,
       gz: this.$store.state.motion.gz,
+    };
+  }
+
+  get accelAngle(): object {
+    return {
+      Alpha: this.$store.state.motion.alpha,
+      Beta: this.$store.state.motion.beta,
+      Gamma: this.$store.state.motion.gamma,
     }
   }
 
   get orientation(): object {
     return {
-      'Alpha': this.$store.state.orientation.alpha,
-      'Beta': this.$store.state.orientation.beta,
-      'Gamma': this.$store.state.orientation.gamma,
-      'Absolute': this.$store.state.orientation.absolute,
-    }
+      Alpha: this.$store.state.orientation.alpha,
+      Beta: this.$store.state.orientation.beta,
+      Gamma: this.$store.state.orientation.gamma,
+      Absolute: this.$store.state.orientation.absolute,
+    };
   }
 }
 </script>
@@ -97,6 +117,10 @@ export default class SensorData extends Vue {
 
   .cFalse {
     color: #d00000;
+  }
+
+  h3 {
+    text-align: center;
   }
 }
 </style>
