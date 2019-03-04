@@ -9,7 +9,9 @@
     "gh-pages": "vue-cli-service gh-pages"
   },
   "dependencies": {
+    "@types/lorem-ipsum": "^1.0.2",
     "gyronorm": "https://github.com/dorukeker/gyronorm.js.git",
+    "lorem-ipsum": "^1.0.6",
     "vue": "^2.6.8",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.3.0",

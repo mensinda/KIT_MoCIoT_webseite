@@ -45,7 +45,6 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import Sensors from '@/sensor/sensors';
 import Orientation from '@/sensor/orientation';
 import Motion from '@/sensor/motion';
 
@@ -81,7 +80,7 @@ export default class SensorData extends Vue {
       Alpha: this.$store.state.motion.alpha,
       Beta: this.$store.state.motion.beta,
       Gamma: this.$store.state.motion.gamma,
-    }
+    };
   }
 
   get orientation(): object {

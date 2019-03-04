@@ -6,8 +6,9 @@
       <router-link to="/sensor">Raw sensor</router-link> |
       <router-link to="/settings">Settings</router-link>
     </div>
-    <router-view style='grid-area: main'/>
-    <span class='status'>{{found}} of {{total}} sensors online</span>
+    <router-view style='grid-area: main' ref='main'/>
+    <span class='status left'>App resolution: {{appSize.width}} x {{appSize.height}}</span>
+    <span class='status right'>{{found}} of {{total}} sensors online</span>
   </div>
 </template>
 
@@ -37,6 +38,25 @@ export default class App extends Vue {
     num += this.$store.state.sensors.hasOrientation ? 1 : 0;
     return num;
   }
+
+  handleResize() {
+    let main: any = this.$refs.main;
+    this.$store.state.appSize.width = main.$el.clientWidth;
+    this.$store.state.appSize.height = main.$el.clientHeight;
+  }
+
+  get appSize(): object {
+    return this.$store.state.appSize
+  }
+
+  mounted() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize()
+  }
+
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize)
+  }
 }
 </script>
 
@@ -59,7 +79,7 @@ export default class App extends Vue {
   grid-template-rows: fit-content(0) auto fit-content(0);
   grid-template-areas: 'nav   nav'
                        'main  main'
-                       'empty st';
+                       'lst   rst';
 
   #nav {
     grid-area: nav;
@@ -78,8 +98,17 @@ export default class App extends Vue {
     grid-area: st;
     color: #a8a8a8;
     font-size: 75%;
-    text-align: right;
     margin: 10px;
+  }
+
+  .left {
+    grid-area: lst;
+    text-align: left;
+  }
+
+  .right {
+    grid-area: rst;
+    text-align: right;
   }
 }
 

@@ -12,6 +12,11 @@ export default new Vuex.Store({
     sensors: new Sensors(),
     orientation: new Orientation(),
     motion: new Motion(),
+
+    appSize: {
+      width: 0,
+      height: 0,
+    }
   },
   mutations: {
 
