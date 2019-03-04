@@ -19,20 +19,20 @@ interface LipSumObject {
 }
 
 interface SizeObject {
-  w: number,
-  h: number
+  w: number;
+  h: number;
 }
 
 interface PosObject {
-  x: number,
-  y: number
+  x: number;
+  y: number;
 }
 
 @Component
 export default class Tile extends Vue {
   @Prop() public readonly count!: number;
 
-  private ts: SizeObject = {w: 0, h: 0}
+  private ts: SizeObject = {w: 0, h: 0};
 
   get content(): LipSumObject {
     const out: LipSumObject = {};
@@ -45,34 +45,34 @@ export default class Tile extends Vue {
     return out;
   }
 
-  tileSize(): SizeObject {
+  public tileSize(): SizeObject {
     if (!this.$el) {
       return {w: 0, h: 0};
     }
 
     return {
       w: this.$el.clientWidth,
-      h: this.$el.clientHeight
+      h: this.$el.clientHeight,
     };
   }
 
   get pos(): PosObject {
     this.ts = this.tileSize();
-    let appSize = this.$store.state.appSize;
+    const appSize = this.$store.state.appSize;
 
     if (this.ts.w <= 0 || this.ts.h <= 0) {
       return {x: 0 / appSize.width, y: 0 / appSize.height};
     }
 
-    let basePos: PosObject = {
+    const basePos: PosObject = {
       x: appSize.width / 2 - this.ts.w / 2,
       y: appSize.height / 2 - this.ts.h / 2,
-    }
+    };
 
     return basePos;
   }
 
-  mounted() {
+  public mounted() {
     //
     this.ts = this.tileSize();
   }

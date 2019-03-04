@@ -16,7 +16,7 @@ export default new Vuex.Store({
     appSize: {
       width: 0,
       height: 0,
-    }
+    },
   },
   mutations: {
 

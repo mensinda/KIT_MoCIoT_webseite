@@ -39,23 +39,23 @@ export default class App extends Vue {
     return num;
   }
 
-  handleResize() {
-    let main: any = this.$refs.main;
+  public handleResize() {
+    const main: any = this.$refs.main;
     this.$store.state.appSize.width = main.$el.clientWidth;
     this.$store.state.appSize.height = main.$el.clientHeight;
   }
 
   get appSize(): object {
-    return this.$store.state.appSize
+    return this.$store.state.appSize;
   }
 
-  mounted() {
+  public mounted() {
     window.addEventListener('resize', this.handleResize);
-    this.handleResize()
+    this.handleResize();
   }
 
-  beforeDestroy() {
-    window.removeEventListener('resize', this.handleResize)
+  public beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
   }
 }
 </script>
