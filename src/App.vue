@@ -14,20 +14,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Orientation from '@/sensor/orientation';
-import Motion from '@/sensor/motion';
 
 @Component
 export default class App extends Vue {
   private total: number = 4;
-
-  constructor() {
-    super();
-    this.$store.state.sensors.callback = (o: Orientation, m: Motion) => {
-      this.$store.state.orientation = o;
-      this.$store.state.motion = m;
-    };
-  }
 
   get found(): number {
     let num: number = 0;

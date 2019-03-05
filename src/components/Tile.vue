@@ -1,7 +1,7 @@
 <template>
   <div class='tile' :style='{left: pos.x + "px", top: pos.y + "px"}'>
-    <div class='text' v-for='(text, head) in content' :key='head'>
-      <h4>{{head}}</h4>
+    <div class='text' v-for='(text, head, idx) in content' :key='idx'>
+      <h4>{{idx}} -- {{head}}</h4>
       <span>{{text}}</span>
     </div>
   </div>
@@ -89,12 +89,10 @@ export default class Tile extends Vue {
   position: relative;
   background-color: #42b983;
   color: #2c3e50;
-  width: 75vw;
-  height: 75vh;
+  width: 70vw;
+  height: 70vh;
   border-radius: 3px;
   overflow: scroll;
-
-  //transition: all 10ms linear;
 
   .text {
     display: block;

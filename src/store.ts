@@ -11,6 +11,7 @@ interface SliderSetting {
   min: number;
   max: number;
   step: number;
+  modulo: number;
   val: number;
 }
 
@@ -49,9 +50,11 @@ const store: StoreOptions<RootState> = {
 
     settings: {
       sliders: {
-        mx: {name: 'X multiplier', min: -4, max: 4, step: .1, val: -1.5},
-        my: {name: 'Y multiplier', min: -4, max: 4, step: .1, val: -1.5},
-        mz: {name: 'Z multiplier', min: -4, max: 4, step: .1, val: -1.5},
+        mx: {name: 'X multiplier', min: -4, max: 4, step: .1, modulo: 1, val: -1.5},
+        my: {name: 'Y multiplier', min: -4, max: 4, step: .1, modulo: 1, val: -1.5},
+        mz: {name: 'Z multiplier', min: -4, max: 4, step: .1, modulo: 1, val: -1.5},
+        tscroll: {name: 'Scroll tilt threshold', min: 10, max: 90, step: 1, modulo: 10, val: 25},
+        twait: {name: 'Scroll action timeout in ms', min: 200, max: 2000, step: 1, modulo: 250, val: 500},
       },
     },
   },

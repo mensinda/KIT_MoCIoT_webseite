@@ -7,7 +7,7 @@
         :min='data.min'
         :max='data.max'
         :interval='data.step'
-        :marks='(v) => {return v % 1 == 0}'
+        :marks='(v) => {return v % data.modulo == 0}'
         :lazy='true'
         v-model='data.val'
         />

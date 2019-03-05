@@ -61,6 +61,10 @@ export default class SensorData extends Vue {
 
   public mounted() {
     this.$store.state.sensors.start();
+    this.$store.state.sensors.callback = (o: Orientation, m: Motion) => {
+      this.$store.state.orientation = o;
+      this.$store.state.motion = m;
+    };
   }
 
   public beforeDestroy() {
