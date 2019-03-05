@@ -14,8 +14,12 @@ export default class Sensors {
     this.callbackFunc = (o: any, m: any) => { return; };
   }
 
-  public init(): void {
-    const args = {frequency: 10};
+  public start(): void {
+    if (this.isSetupVar) {
+      this.gn.stop();
+    }
+
+    const args = {frequency: 2};
     this.gn.init(args).then(
       () => {
         this.isSetupVar = true;
@@ -31,6 +35,13 @@ export default class Sensors {
         this.hasErrorVar = true;
       },
     );
+  }
+
+  public stop(): void {
+    if (this.isSetupVar) {
+      this.gn.end();
+      this.isSetupVar = false;
+    }
   }
 
   get isSetup(): boolean {

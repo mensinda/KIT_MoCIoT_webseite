@@ -23,7 +23,6 @@ export default class App extends Vue {
 
   constructor() {
     super();
-    this.$store.state.sensors.init();
     this.$store.state.sensors.callback = (o: Orientation, m: Motion) => {
       this.$store.state.orientation = o;
       this.$store.state.motion = m;
@@ -84,7 +83,7 @@ export default class App extends Vue {
   #nav {
     grid-area: nav;
     text-align: center;
-    margin: 10px;
+    padding: 10px;
     a {
       font-weight: bold;
       color: #2c3e50;
@@ -92,6 +91,8 @@ export default class App extends Vue {
         color: #42b983;
       }
     }
+
+    background-color: #e0e0e0;
   }
 
   .status {

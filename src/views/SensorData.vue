@@ -59,6 +59,14 @@ export default class SensorData extends Vue {
     };
   }
 
+  public mounted() {
+    this.$store.state.sensors.start();
+  }
+
+  public beforeDestroy() {
+    this.$store.state.sensors.stop();
+  }
+
   get accel(): object {
     return {
       x: this.$store.state.motion.x,

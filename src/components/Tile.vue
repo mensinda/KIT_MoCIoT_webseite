@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Watch, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mapState } from 'vuex';
 import loremIpsum from 'lorem-ipsum';
 import Sensors from '@/sensor/sensors';
@@ -59,6 +59,7 @@ export default class Tile extends Vue {
   get pos(): PosObject {
     this.ts = this.tileSize();
     const appSize = this.$store.state.appSize;
+    const motion: Motion = this.$store.state.motion;
 
     if (this.ts.w <= 0 || this.ts.h <= 0) {
       return {x: 0 / appSize.width, y: 0 / appSize.height};
@@ -68,6 +69,9 @@ export default class Tile extends Vue {
       x: appSize.width / 2 - this.ts.w / 2,
       y: appSize.height / 2 - this.ts.h / 2,
     };
+
+    basePos.x += motion.x * this.$store.state.settings.sliders.mx.val;
+    basePos.y += motion.y * this.$store.state.settings.sliders.my.val;
 
     return basePos;
   }
@@ -81,14 +85,16 @@ export default class Tile extends Vue {
 
 <style lang="scss" scoped>
 .tile {
-  display: inline-block;
+  display: block;
   position: relative;
   background-color: #42b983;
   color: #2c3e50;
-  height: 75%;
-  width: 75%;
+  width: 75vw;
+  height: 75vh;
   border-radius: 3px;
   overflow: scroll;
+
+  //transition: all 10ms linear;
 
   .text {
     display: block;
@@ -102,7 +108,6 @@ export default class Tile extends Vue {
   }
 
   span {
-    position: relative;
     display: block;
     margin-left: .5em;
     margin-right: .5em;

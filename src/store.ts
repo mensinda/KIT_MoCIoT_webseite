@@ -1,14 +1,43 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
+import Vuex, { StoreOptions } from 'vuex';
 import Sensors from '@/sensor/sensors';
 import Orientation from '@/sensor/orientation';
 import Motion from '@/sensor/motion';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+interface SliderSetting {
+  name: string;
+  min: number;
+  max: number;
+  step: number;
+  val: number;
+}
+
+interface SliderSettings {
+  [key: string]: SliderSetting;
+}
+
+interface Settings {
+  sliders: SliderSettings;
+}
+
+interface AppSize {
+  width: number;
+  height: number;
+}
+
+interface RootState {
+  sensors: Sensors;
+  orientation: Orientation;
+  motion: Motion;
+
+  appSize: AppSize;
+  settings: Settings;
+}
+
+const store: StoreOptions<RootState> = {
   state: {
-    constStr: 'Global store string',
     sensors: new Sensors(),
     orientation: new Orientation(),
     motion: new Motion(),
@@ -17,11 +46,18 @@ export default new Vuex.Store({
       width: 0,
       height: 0,
     },
-  },
-  mutations: {
 
+    settings: {
+      sliders: {
+        mx: {name: 'X multiplier', min: -4, max: 4, step: .1, val: -1.5},
+        my: {name: 'Y multiplier', min: -4, max: 4, step: .1, val: -1.5},
+        mz: {name: 'Z multiplier', min: -4, max: 4, step: .1, val: -1.5},
+      },
+    },
   },
-  actions: {
 
-  },
-});
+  mutations: {},
+  actions: {},
+};
+
+export default new Vuex.Store(store);
